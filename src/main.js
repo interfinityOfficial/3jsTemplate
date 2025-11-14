@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { manager } from './manager';
 import { addDefaultMeshes } from './meshes';
 import { addAmbientLight, addPointLight, addKeyLight, addRimLight } from './lights';
 import Model from './model';
@@ -8,6 +9,8 @@ const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerH
 const renderer = new THREE.WebGLRenderer();
 
 camera.position.z = 5;
+
+const loadingManager = manager();
 
 const meshes = {};
 const mixers = [];
@@ -48,6 +51,7 @@ function instances() {
     position: new THREE.Vector3(0, -0.8, 3),
     animationState: true,
     mixers: mixers,
+    manager: loadingManager,
   });
 
   flowers.init();
